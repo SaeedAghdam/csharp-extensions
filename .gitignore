@@ -1,2 +1,4 @@
 .vs/
 obj/
+ExtensionTest/bin
+csharp-extensions/bin
