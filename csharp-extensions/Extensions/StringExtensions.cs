@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Data.SqlTypes;
+using System.Globalization;
 using System.Text.RegularExpressions;
 
 namespace csharp_extensions.Extensions
@@ -84,12 +85,23 @@ namespace csharp_extensions.Extensions
 
         public static bool IsPalindrome(this string str, bool ignoreSpace = false, bool ignoreCase = false)
         {
+            if (str == null)
+                throw new ArgumentNullException(nameof(str));
+
             var cleanInput = ignoreSpace ? str.Replace(" ", "") : str;
             var reversedInput = new string(cleanInput.Reverse().ToArray());
             return cleanInput.Equals(reversedInput, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.CurrentCulture);
         }
 
 
-        public static bool IsNumeric(this string str) => double.TryParse(str, out _);
+        public static bool IsNumeric(this string str) => str != null ? double.TryParse(str, out _) : throw new ArgumentNullException(nameof(str));
+
+        public static bool In(this string str, bool ignoreCase = false, params string[] values)
+        {
+            if (str == null)
+                throw new ArgumentNullException(nameof(str));
+
+            return values.Contains(str, ignoreCase ? StringComparer.CurrentCultureIgnoreCase : StringComparer.OrdinalIgnoreCase);
+        }
     }
 }
