@@ -80,5 +80,16 @@ namespace csharp_extensions.Extensions
             InvertCase,
             RandomCase
         }
+
+
+        public static bool IsPalindrome(this string str, bool ignoreSpace = false, bool ignoreCase = false)
+        {
+            var cleanInput = ignoreSpace ? str.Replace(" ", "") : str;
+            var reversedInput = new string(cleanInput.Reverse().ToArray());
+            return cleanInput.Equals(reversedInput, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.CurrentCulture);
+        }
+
+
+        public static bool IsNumeric(this string str) => double.TryParse(str, out _);
     }
 }
