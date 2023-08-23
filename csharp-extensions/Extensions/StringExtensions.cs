@@ -2,7 +2,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace csharp_extensions.Extensions
+namespace CSharpExtensionsLibrary
 {
     public static class StringExtensions
     {
