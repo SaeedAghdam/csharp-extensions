@@ -186,17 +186,17 @@ namespace csharp_extensions.Extensions
         /// The GenerateRandomText function generates a random text string of a specified length, with customizable character sets.
         /// </summary>
         /// <param name="length"> The desired length of the random text to be generated.</param>
-        /// <param name="includeUpperchars"> A boolean flag indicating whether to include uppercase letters (e.g., A-Z) in the random text. The default is true.</param>
-        /// <param name="includeLowerrchars"> A boolean flag indicating whether to include lowercase letters (e.g., a-z) in the random text. The default is true.</param>
+        /// <param name="includeUpperChars"> A boolean flag indicating whether to include uppercase letters (e.g., A-Z) in the random text. The default is true.</param>
+        /// <param name="includeLowerChars"> A boolean flag indicating whether to include lowercase letters (e.g., a-z) in the random text. The default is true.</param>
         /// <param name="includeNumbers">A boolean flag indicating whether to include numbers (e.g., 0-9) in the random text. The default is true.</param>
-        /// <param name="includeSpecialchars">A boolean flag indicating whether to include special characters (e.g., !@#$%^&*()_+~|) in the random text. The default is true.</param>
+        /// <param name="includeSpecialChars">A boolean flag indicating whether to include special characters (e.g., !@#$%^&*()_+~|) in the random text. The default is true.</param>
         /// <returns>string</returns>
         public static string GenerateRandomText(
             int length,
-            bool includeUpperchars = true,
-            bool includeLowerrchars = true,
+            bool includeUpperChars = true,
+            bool includeLowerChars = true,
             bool includeNumbers = true,
-            bool includeSpecialchars = true)
+            bool includeSpecialChars = true)
         {
             var chars = string.Empty;
             var result = string.Empty;
@@ -208,16 +208,16 @@ namespace csharp_extensions.Extensions
             var numbers = "0123456789";
             var specificChars = "!@#$%^&*()_+~|";
 
-            if (includeUpperchars)
+            if (includeUpperChars)
                 chars += Upperchars;
 
-            if (includeLowerrchars)
+            if (includeLowerChars)
                 chars += lowerChars;
 
             if (includeNumbers)
                 chars += numbers;
 
-            if (includeSpecialchars)
+            if (includeSpecialChars)
                 chars += specificChars;
 
             if (string.IsNullOrEmpty(chars))

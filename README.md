@@ -36,14 +36,22 @@ class Program
 {
     static void Main()
     {
+        //ConvertCase 
         string text = "Hello, World!";
-        
-        // Using a string extension method
-        string reversedText = text.Reverse(); // "dlroW ,olleH"
-        
-        // Using an integer extension method
-        int number = 12345;
-        bool isEven = number.IsEven(); // true
+        string titleCase = input.ConvertCase(StringConvertCaseType.TitleCase);
+        // Result: "Hello World"
+        string invertCase = input.ConvertCase(StringConvertCaseType.InvertCase);
+        // Result: "HELLO WORLD"
+
+        // Generate a random string of length 10 with default character sets
+        string randomString1 = StringExtensions.GenerateRandomText(10);
+        Console.WriteLine("Random String 1: " + randomString1);
+        // Generate a random string of length 8 with only lowercase letters
+        string randomString2 = StringExtensions.GenerateRandomText(8, includeUpperChars: false, includeLowerChars: true, includeNumbers: false, includeSpecialChars: false);
+        Console.WriteLine("Random String 2: " + randomString2);
+        // Generate a random string of length 12 with all character sets
+        string randomString3 = StringExtensions.GenerateRandomText(12, includeUpperChars: true, includeLowerChars: true, includeNumbers: true, includeSpecialChars: true);
+        Console.WriteLine("Random String 3: " + randomString3);
     }
 }
 ```
