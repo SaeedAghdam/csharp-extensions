@@ -90,6 +90,15 @@ namespace CSharpExtensionsLibrary
                     var random = new Random();
                     return new string(str.Select(c => char.IsLetter(c) ? (random.Next(2) == 1 ?
                       char.ToLower(c) : char.ToUpper(c)) : c).ToArray());
+                case StringConvertCaseType.Slug:
+                    str = str.ToLowerInvariant();
+                    // Remove diacritics (accents) from characters
+                    str = RemoveDiacritics(str);
+                    // Remove special characters and replace spaces with hyphens
+                    str = Regex.Replace(str, @"[^a-z0-9\s-]", "");
+                    str = Regex.Replace(str, @"\s+", " ").Trim();
+                    str = str.Replace(" ", "-");
+                    return str;
                 default:
                     return str;
             }
@@ -105,10 +114,12 @@ namespace CSharpExtensionsLibrary
             UpperCase,
             //Converts the string to sentence case, capitalizing the first letter of each sentence.
             SentenceCase,
-            // Inverts the casing of each letter in the string (lowercase becomes uppercase and vice versa).
+            //Inverts the casing of each letter in the string (lowercase becomes uppercase and vice versa).
             InvertCase,
             //Randomly changes the casing of each letter in the string, producing a mixed-case result.
-            RandomCase
+            RandomCase,
+            //Convert a string into a URL-friendly slug
+            Slug
         }
 
         /// <summary>
@@ -255,6 +266,24 @@ namespace CSharpExtensionsLibrary
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// The Truncate method is an extension method for strings in C#. It allows you to truncate a given string to a specified length and append an ellipsis ("...") to indicate that the string has been shortened.
+        /// </summary>
+        /// <param name="str">The input string that you want to truncate.</param>
+        /// <param name="length"> The maximum length to which you want to truncate the input string.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">If the input string str is not null. If str is null, it throws an ArgumentNullException with the parameter name "str" to indicate that a valid input string is required.</exception>
+        public static string Truncate(this string str, int length)
+        {
+            if (str == null)
+                throw new ArgumentNullException(nameof(str));
+
+            if (str.Length <= length)
+                return str;
+
+            return str[..length] + "...";
         }
     }
 }
