@@ -285,5 +285,20 @@ namespace CSharpExtensionsLibrary
 
             return str[..length] + "...";
         }
+
+        /// <summary>
+        /// The IsEmail method is an extension method for strings used to check whether a given string conforms to the format of a valid email address.
+        /// </summary>
+        /// <param name="str">The string to be checked for email address validity.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">If the input string str is not null. If str is null, it throws an ArgumentNullException with the parameter name "str" to indicate that a valid input string is required.</exception>
+        public static bool IsEmail(this string str)
+        {
+            if (str == null)
+                throw new ArgumentNullException(nameof(str));
+            
+            var pattern = @"^[\w\.-]+@[\w\.-]+\.\w+$";
+            return Regex.IsMatch(str, pattern);
+        }
     }
 }
